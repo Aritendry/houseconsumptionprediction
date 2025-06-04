@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prédiction de Consommation</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Estimation de Consommation Énergétique</h1>
+        <form method="post" action="/predict" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="month_num">Mois (1-12):</label>
+                <input type="number" id="month_num" name="month_num" min="1" max="12" required>
+            </div>
+
+            <input type="hidden" id="season" name="season" required>
+
+            <div class="form-group">
+                <label for="household_size">Nombre de personnes (max 6):</label>
+                <input type="number" id="household_size" name="household_size" min="1" max="6" required>
+            </div>
+
+            <div class="form-group">
+                <label for="housing_type">Type de logement:</label>
+                <select id="housing_type" name="housing_type" required>
+                    <option value="apartment">Appartement</option>
+                    <option value="house">Maison</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="heating_cooling">Chauffage/Climatisation:</label>
+                <select id="heating_cooling" name="heating_cooling" required>
+                    <option value="yes">Oui</option>
+                    <option value="no">Non</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="living_area">Surface habitable (m²):</label>
+                <input type="number" id="living_area" name="living_area" step="0.1" min="1" required>
+            </div>
+
+            <button type="submit">Calculer</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('month_num').addEventListener('change', function() {
+            var month = parseInt(this.value);
+            var seasonInput = document.getElementById('season');
+
+            if (month >= 3 && month <= 5) {
+                seasonInput.value = 'spring';
+            } else if (month >= 6 && month <= 8) {
+                seasonInput.value = 'summer';
+            } else if (month >= 9 && month <= 11) {
+                seasonInput.value = 'fall';
+            } else {
+                seasonInput.value = 'winter';
+            }
+        });
+    </script>
+</body>
+</html>

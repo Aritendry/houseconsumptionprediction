@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Résultat</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Résultat de la prédiction</h1>
+        
+        <!-- Affichez les deux versions pour tester -->
+        <p>Version numérique: {{ prediction }}</p>
+        <p>Version formatée: {{ prediction_formatted }}</p>
+        
+        <p>Consommation estimée : <strong>{{ prediction_formatted }} Wh</strong></p>
+        
+        <h2>Détails :</h2>
+        <ul>
+            <li>Mois : {{ details.month_name }} ({{ details.month_num }})</li>
+            <li>Saison : {{ details.season }}</li>
+            <li>Nombre de personnes : {{ details.household_size }}</li>
+            <li>Type de logement : {{ details.housing_type }}</li>
+            <li>Surface : {{ details.living_area }} m²</li>
+            <li>Chauffage/Climatisation : {{ details.heating_cooling }}</li>
+        </ul>
+        
+        <a href="/">Nouvelle estimation</a>
+    </div>
+</body>
+</html>
